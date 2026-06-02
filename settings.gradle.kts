@@ -1,0 +1,5 @@
+rootProject.name = "curso-arquitetura-limpa-desafio-picpay"
+include("core")
+include("usecase")
+include("application")
+include("infrastructure")
