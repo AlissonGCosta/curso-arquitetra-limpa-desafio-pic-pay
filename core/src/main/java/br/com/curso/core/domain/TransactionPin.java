@@ -1,5 +1,8 @@
 package br.com.curso.core.domain;
 
+import br.com.curso.core.exception.TransactionPinExcption;
+import br.com.curso.core.exception.enums.ErrorCodeEnum;
+
 import java.time.LocalDate;
 
 public class TransactionPin {
@@ -79,14 +82,14 @@ public class TransactionPin {
         return pin;
     }
 
-    public void setPin(String pin) {
-        pinIsValid(pin)
+    public void setPin(String pin) throws TransactionPinExcption {
+        pinIsValid(pin);
         this.pin = pin;
     }
 
-    private void pinIsValid(String pin) {
+    private void pinIsValid(String pin) throws  TransactionPinExcption {
         if (pin.length() != 8) {
-            throw
+            throw new TransactionPinExcption(ErrorCodeEnum.TRP0001.getMessage(), ErrorCodeEnum.TRP0001.getCode());
         }
 
     }

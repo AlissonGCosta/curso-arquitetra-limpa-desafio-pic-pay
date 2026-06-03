@@ -67,13 +67,13 @@ public class Wallet {
         this.balance.add(value);
    }
 
-    public void transfer(BigDecimal value) {
+    public void transfer(BigDecimal value) throws TrasnferException {
         if(this.user.getType() == UserTypeEnum.SHOPKEEPER){
-            throw new TrasnferException(ErrorCodeEnum.ON0001.getMessage(), ErrorCodeEnum.ON0001.getCode());
+            throw new TrasnferException(ErrorCodeEnum.TR0001.getMessage(), ErrorCodeEnum.TR0001.getCode());
         }
 
         if(this.balance.compareTo(value) < 0){
-            throw
+            throw new TrasnferException(ErrorCodeEnum.TR0002.getMessage(), ErrorCodeEnum.TR0002.getCode());
         }
 
         this.balance.subtract(value);
