@@ -1,8 +1,12 @@
 package br.com.curso.core.exception.enums;
 
 public enum ErrorCodeEnum {
-    ON0001("Tax Number invalido", "ON-0001")
+    ON0001("Tax Number invalido", "ON-0001"),
 
+    TR0001("Usuario lojista não tem a função transferencia disponivel", "TR0001"),
+    TR0002("Saldo indisponivel", "TR0002"),
+
+    TRP0001("Pin invalido", "TRP0001"),
     ;
     private String message;
     private String code;
