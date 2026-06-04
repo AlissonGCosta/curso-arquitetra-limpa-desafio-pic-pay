@@ -3,7 +3,6 @@ package br.com.curso.usecase;
 import br.com.curso.core.domain.User;
 import br.com.curso.core.domain.Wallet;
 
-
-public interface CreateWalletUseCase {
-    void create(Wallet wallet);
+public interface FindWalletByTaxNumberUseCase {
+    Wallet findWaletByTaxNumber(String taxNumber);
 }
