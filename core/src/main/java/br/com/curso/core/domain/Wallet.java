@@ -78,4 +78,9 @@ public class Wallet {
 
         this.balance.subtract(value);
     }
+
+    public void reciveTransfer(BigDecimal value) throws TrasnferException {
+
+        this.balance.add(value);
+    }
 }

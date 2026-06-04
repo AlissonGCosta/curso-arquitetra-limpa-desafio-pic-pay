@@ -1,7 +1,10 @@
 package br.com.curso.core.exception;
 
 public class NotFoundException extends RuntimeException {
-    public NotFoundException(String message) {
+   private String code;
+
+    public NotFoundException(String message, String code) {
         super(message);
+        this.code = code;
     }
 }
