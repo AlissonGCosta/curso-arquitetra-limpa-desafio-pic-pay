@@ -4,6 +4,7 @@ import br.com.curso.core.domain.TransactionPin;
 import br.com.curso.core.domain.User;
 import br.com.curso.core.domain.Wallet;
 import br.com.curso.core.exception.EmailException;
+import br.com.curso.core.exception.InternalServerErrorException;
 import br.com.curso.core.exception.TaxNumberException;
 import br.com.curso.core.exception.enums.ErrorCodeEnum;
 import br.com.curso.gateway.CreateUserGateway;
@@ -16,19 +17,14 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private CreateUserGateway createUserGateway;
     private TaxNumberAvaliableUseCase taxNumberAvaliableUseCase;
     private EmailAvailableUseCase emailAvailableUseCase;
-    private CreateWalletUseCase createWalletUseCase;
-    private CreateTransactionPinUseCase createTransactionPinUseCase;
 
     public CreateUserUseCaseImpl(TaxNumberAvaliableUseCase taxNumberAvaliableUseCase ,
                                  EmailAvailableUseCase emailAvailableUseCase,
-                                 CreateUserGateway createUserGateway,
-                                 CreateTransactionPinUseCase createTransactionPinUseCase,
-                                 CreateWalletUseCase createWalletUseCase) {
+                                 CreateUserGateway createUserGateway) {
         this.taxNumberAvaliableUseCase = taxNumberAvaliableUseCase;
         this.emailAvailableUseCase = emailAvailableUseCase;
         this.createUserGateway = createUserGateway;
-        this.createTransactionPinUseCase = createTransactionPinUseCase;
-        this.createWalletUseCase = createWalletUseCase;
+
     }
 
     @Override
@@ -42,10 +38,11 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
             throw new EmailException(ErrorCodeEnum.ON0003.getMessage(), ErrorCodeEnum.ON0003.getCode());
         }
 
-        var userSaved = createUserGateway.create(user);
+        if(!createUserGateway.create(user, new Wallet(BigDecimal.ZERO, user), new TransactionPin(user, pin))){
+            throw new InternalServerErrorException(ErrorCodeEnum.ON0004.getMessage(), ErrorCodeEnum.ON0004.getCode());
+        }
 
-        createWalletUseCase.create(new Wallet(BigDecimal.ZERO, userSaved));
-        createTransactionPinUseCase.create(new TransactionPin(userSaved, pin ));
+
     }
 
 
