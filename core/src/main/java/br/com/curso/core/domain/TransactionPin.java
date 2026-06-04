@@ -31,11 +31,11 @@ public class TransactionPin {
         this.attempt = attempt;
     }
 
-    public TransactionPin(User user, String pin, Integer attempt, boolean blocked) {
+    public TransactionPin(User user, String pin) {
         this.user = user;
-        this.pin = pin;
-        this.attempt = attempt;
-        this.blocked = blocked;
+        setPin(pin);
+        this.attempt = 3;
+        this.blocked = false;
         this.createdAt = LocalDate.now();
     }
 
