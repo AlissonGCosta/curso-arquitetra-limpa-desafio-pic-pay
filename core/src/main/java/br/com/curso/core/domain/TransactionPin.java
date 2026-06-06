@@ -4,12 +4,12 @@ import br.com.curso.core.exception.TransactionPinExcption;
 import br.com.curso.core.exception.enums.ErrorCodeEnum;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TransactionPin {
 
     private Long id;
 
-    private User user;
 
     private String pin;
 
@@ -21,8 +21,7 @@ public class TransactionPin {
 
     private LocalDate updatedAt;
 
-    public TransactionPin(User user, LocalDate updatedAt, String pin, Long id, LocalDate createdAt, boolean blocked, Integer attempt) {
-        this.user = user;
+    public TransactionPin( LocalDate updatedAt, String pin, Long id, LocalDate createdAt, boolean blocked, Integer attempt) {
         this.updatedAt = updatedAt;
         this.pin = pin;
         this.id = id;
@@ -31,8 +30,7 @@ public class TransactionPin {
         this.attempt = attempt;
     }
 
-    public TransactionPin(User user, String pin) {
-        this.user = user;
+    public TransactionPin(String pin) {
         setPin(pin);
         this.attempt = 3;
         this.blocked = false;
@@ -94,11 +92,21 @@ public class TransactionPin {
 
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof TransactionPin that)) return false;
+
+        return isBlocked() == that.isBlocked() && getId().equals(that.getId()) && Objects.equals(getPin(), that.getPin()) && Objects.equals(getAttempt(), that.getAttempt()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && getUpdatedAt().equals(that.getUpdatedAt());
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + Objects.hashCode(getPin());
+        result = 31 * result + Objects.hashCode(getAttempt());
+        result = 31 * result + Boolean.hashCode(isBlocked());
+        result = 31 * result + Objects.hashCode(getCreatedAt());
+        result = 31 * result + getUpdatedAt().hashCode();
+        return result;
     }
 }
