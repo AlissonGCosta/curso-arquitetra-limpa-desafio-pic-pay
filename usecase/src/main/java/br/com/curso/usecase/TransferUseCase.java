@@ -6,5 +6,5 @@ import java.math.BigDecimal;
 
 public interface TransferUseCase {
 
-    Boolean transfer(String toTaxNumber, String fromTaxNumber, BigDecimal value);
+    Boolean transfer(String toTaxNumber, String fromTaxNumber, BigDecimal value, String pin );
 }
