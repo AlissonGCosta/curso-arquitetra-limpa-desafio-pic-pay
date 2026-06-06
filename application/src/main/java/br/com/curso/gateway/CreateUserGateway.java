@@ -7,5 +7,5 @@ import br.com.curso.core.exception.EmailException;
 import br.com.curso.core.exception.TaxNumberException;
 
 public interface CreateUserGateway {
-    Boolean create(User user, Wallet wallet, TransactionPin transactionPin);
+    Boolean create(User user, Wallet wallet);
 }

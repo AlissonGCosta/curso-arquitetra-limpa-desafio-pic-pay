@@ -19,6 +19,7 @@ public class TransferUseCaseImpl implements TransferUseCase {
     private CreateTransactionUseCase createTransactionUseCase;
     private TransferGateway transferGateway;
     private UserNotificationUseCase userNotificationUseCase;
+    private TransactionPinValidateUseCase  transactionPinValidateUseCase;
 
     public TransferUseCaseImpl(TransactionValidateUseCase transactionValidateUseCase,
                                FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase,
@@ -34,7 +35,7 @@ public class TransferUseCaseImpl implements TransferUseCase {
 
 
     @Override
-    public Boolean transfer(String toTaxNumber, String fromTaxNumber, BigDecimal value) {
+    public Boolean transfer(String toTaxNumber, String fromTaxNumber, BigDecimal value, String pin) {
 
         Wallet from = findWalletByTaxNumberUseCase.findWaletByTaxNumber(fromTaxNumber);
         Wallet to = findWalletByTaxNumberUseCase.findWaletByTaxNumber(toTaxNumber);
