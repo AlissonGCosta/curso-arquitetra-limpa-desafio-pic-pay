@@ -22,6 +22,8 @@ public enum ErrorCodeEnum {
 
     AUT0001("Usuario não autorizado", "AUT-0001"),
 
+    PIN0001("Pin de transação bloqueado", "PIN-0001")
+
     ;
     private String message;
     private String code;

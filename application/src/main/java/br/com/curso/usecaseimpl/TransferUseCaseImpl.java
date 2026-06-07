@@ -3,9 +3,7 @@ package br.com.curso.usecaseimpl;
 import br.com.curso.core.domain.Transaction;
 import br.com.curso.core.domain.Wallet;
 
-import br.com.curso.core.exception.InternalServerErrorException;
-import br.com.curso.core.exception.NotFoundException;
-import br.com.curso.core.exception.NotificationException;
+import br.com.curso.core.exception.*;
 import br.com.curso.core.exception.enums.ErrorCodeEnum;
 import br.com.curso.gateway.TransferGateway;
 import br.com.curso.usecase.*;
@@ -25,12 +23,14 @@ public class TransferUseCaseImpl implements TransferUseCase {
                                FindWalletByTaxNumberUseCase findWalletByTaxNumberUseCase,
                                CreateTransactionUseCase createTransactionUseCase,
                                TransferGateway transferGateway,
-                               UserNotificationUseCase userNotificationUseCase) {
+                               UserNotificationUseCase userNotificationUseCase,
+                               TransactionPinValidateUseCase transactionPinValidateUseCase) {
         this.findWalletByTaxNumberUseCase = findWalletByTaxNumberUseCase;
         this.transactionValidateUseCase = transactionValidateUseCase;
         this.createTransactionUseCase = createTransactionUseCase;
         this.transferGateway = transferGateway;
         this.userNotificationUseCase = userNotificationUseCase;
+        this.transactionPinValidateUseCase = transactionPinValidateUseCase;
     }
 
 
@@ -39,6 +39,12 @@ public class TransferUseCaseImpl implements TransferUseCase {
 
         Wallet from = findWalletByTaxNumberUseCase.findWaletByTaxNumber(fromTaxNumber);
         Wallet to = findWalletByTaxNumberUseCase.findWaletByTaxNumber(toTaxNumber);
+
+        if(from.getTransactionPin().isBlocked()){
+            throw new PinException(ErrorCodeEnum.PIN0001.getMessage(), ErrorCodeEnum.PIN0001.getCode());
+        }
+
+        transactionPinValidateUseCase.validate(from.getTransactionPin());
 
         from.transfer(value);
         to.reciveTransfer(value);
