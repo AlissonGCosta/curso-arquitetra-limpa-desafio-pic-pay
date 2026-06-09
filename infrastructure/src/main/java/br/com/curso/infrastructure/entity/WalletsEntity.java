@@ -32,11 +32,22 @@ public class WalletsEntity {
 
     @OneToOne
     @JoinColumn(name = "TransactionPinId")
-    private UserEntity TransactionPinEntity;
+    private TransactionPinEntity TransactionPinEntity;
 
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updateAt", nullable = false)
+    @Column(name = "updateAt")
     private LocalDateTime updateAt;
+
+    public WalletsEntity(BigDecimal balance, UserEntity userEntity,
+                         TransactionPinEntity transactionPinEntity,
+                         LocalDateTime createdAt,
+                         LocalDateTime updateAt) {
+        this.balance = balance;
+        this.userEntity = userEntity;
+        TransactionPinEntity = transactionPinEntity;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+    }
 }

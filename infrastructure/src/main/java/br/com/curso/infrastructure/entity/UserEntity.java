@@ -6,10 +6,12 @@ import lombok.*;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 @Builder
@@ -29,6 +31,9 @@ public class UserEntity {
     @Column(name = "tax_number", nullable = false )
     private String taxNumber;
 
+    @Column(name = "password", nullable = false )
+    private String password;
+
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
@@ -41,6 +46,7 @@ public class UserEntity {
 
     @Column(name = "updateAt", nullable = false)
     private LocalDateTime updateAt;
+
 
 
 }
