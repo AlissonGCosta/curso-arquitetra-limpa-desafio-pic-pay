@@ -4,7 +4,7 @@ CREATE TABLE Wallets(
     UserId UUID NOT NULL UNIQUE,
     TransactionPinId BIGINT NOT NULL UNIQUE,
     CreatedAt DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP,
-    UpadetAt DATETIME,
+    UpdateAt DATETIME,
 
     FOREIGN KEY (UserId) REFERENCES  Users(Id),
     FOREIGN KEY (TransactionPinId) REFERENCES  TransactionsPin(Id)

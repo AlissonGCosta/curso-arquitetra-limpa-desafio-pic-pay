@@ -4,5 +4,5 @@ CREATE TABLE TransactionsPin(
     Attempt INT NOT NULL,
     Blocked BOOL NOT NULL,
     CreatedAt DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP,
-    UpadetAt DATETIME
+    UpdateAt DATETIME
 )
