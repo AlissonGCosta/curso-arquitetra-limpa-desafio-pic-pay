@@ -4,6 +4,7 @@ import br.com.curso.core.exception.TransactionPinExcption;
 import br.com.curso.core.exception.enums.ErrorCodeEnum;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class TransactionPin {
@@ -15,13 +16,17 @@ public class TransactionPin {
 
     private Integer attempt;
 
-    private boolean blocked;
+    private Boolean blocked;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
-    public TransactionPin( LocalDate updatedAt, String pin, Long id, LocalDate createdAt, boolean blocked, Integer attempt) {
+    public TransactionPin( LocalDateTime updatedAt,
+                           String pin, Long id,
+                           LocalDateTime createdAt,
+                           Boolean blocked,
+                           Integer attempt) {
         this.updatedAt = updatedAt;
         this.pin = pin;
         this.id = id;
@@ -34,7 +39,7 @@ public class TransactionPin {
         setPin(pin);
         this.attempt = 3;
         this.blocked = false;
-        this.createdAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public TransactionPin() {}
@@ -47,20 +52,20 @@ public class TransactionPin {
         this.id = id;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
 
-    public boolean isBlocked() {
+    public boolean getBlocked() {
         return blocked;
     }
 
@@ -105,7 +110,7 @@ public class TransactionPin {
     public final boolean equals(Object o) {
         if (!(o instanceof TransactionPin that)) return false;
 
-        return isBlocked() == that.isBlocked() && getId().equals(that.getId()) && Objects.equals(getPin(), that.getPin()) && Objects.equals(getAttempt(), that.getAttempt()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && getUpdatedAt().equals(that.getUpdatedAt());
+        return getBlocked() == that.getBlocked() && getId().equals(that.getId()) && Objects.equals(getPin(), that.getPin()) && Objects.equals(getAttempt(), that.getAttempt()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && getUpdatedAt().equals(that.getUpdatedAt());
     }
 
     @Override
@@ -113,7 +118,7 @@ public class TransactionPin {
         int result = getId().hashCode();
         result = 31 * result + Objects.hashCode(getPin());
         result = 31 * result + Objects.hashCode(getAttempt());
-        result = 31 * result + Boolean.hashCode(isBlocked());
+        result = 31 * result + Boolean.hashCode(getBlocked());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + getUpdatedAt().hashCode();
         return result;

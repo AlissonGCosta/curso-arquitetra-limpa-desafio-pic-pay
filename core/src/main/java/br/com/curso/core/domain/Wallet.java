@@ -5,6 +5,7 @@ import br.com.curso.core.exception.enums.ErrorCodeEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Wallet {
@@ -15,10 +16,15 @@ public class Wallet {
 
     private BigDecimal balance;
     private User user;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public Wallet(TransactionPin  transactionPin ,BigDecimal balance, Long id, LocalDate createdAt, LocalDate updatedAt, User user) {
+    public Wallet(TransactionPin  transactionPin,
+                  BigDecimal balance,
+                  Long id,
+                  LocalDateTime createdAt,
+                  LocalDateTime updatedAt,
+                  User user) {
         this.balance = balance;
         this.id = id;
         this.transactionPin = transactionPin;
@@ -27,11 +33,13 @@ public class Wallet {
         this.user = user;
     }
 
-    public Wallet(BigDecimal balance, User user, TransactionPin transactionPin) {
+    public Wallet(BigDecimal balance,
+                  User user,
+                  TransactionPin transactionPin) {
         this.transactionPin = transactionPin;
         this.balance = balance;
         this.user = user;
-        this.createdAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public Wallet() {}
@@ -44,15 +52,15 @@ public class Wallet {
         this.id = id;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 

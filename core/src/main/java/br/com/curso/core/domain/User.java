@@ -1,6 +1,7 @@
 package br.com.curso.core.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -12,15 +13,21 @@ public class User {
     private TaxNumber taxNumber;
     private String fullname;
     private UserTypeEnum type;
-    private TransactionPin transactionPin;
-    private LocalDate cratedAt;
-    private LocalDate updatedAt;
+    private LocalDateTime cratedAt;
+    private LocalDateTime updatedAt;
 
-    public User(LocalDate cratedAt, LocalDate updatedAt, UserTypeEnum type, TransactionPin transactionPin, TaxNumber taxNumber, String password, UUID id, String fullname, String email) {
+    public User(LocalDateTime cratedAt,
+                LocalDateTime updatedAt,
+                UserTypeEnum type,
+                TaxNumber taxNumber,
+                String password,
+                UUID id,
+                String fullname,
+                String email) {
         this.cratedAt = cratedAt;
         this.updatedAt = updatedAt;
         this.type = type;
-        this.transactionPin = transactionPin;
+
         this.taxNumber = taxNumber;
         this.password = password;
         this.id = id;
@@ -28,13 +35,17 @@ public class User {
         this.email = email;
     }
 
-    public User(String email, String password, TaxNumber taxNumber, String fullname, UserTypeEnum type, TransactionPin transactionPin) {
+    public User(String email,
+                String password,
+                TaxNumber taxNumber,
+                String fullname,
+                UserTypeEnum type) {
         this.email = email;
         this.password = password;
         this.taxNumber = taxNumber;
         this.fullname = fullname;
         this.type = type;
-        this.transactionPin = transactionPin;
+
     }
 
     public User() {
@@ -88,25 +99,19 @@ public class User {
         this.type = type;
     }
 
-    public TransactionPin getTransactionPin() {
-        return transactionPin;
-    }
 
-    public void setTransactionPin(TransactionPin transactionPin) {
-        this.transactionPin = transactionPin;
-    }
 
-    public LocalDate getCratedAt() {
+    public LocalDateTime getCratedAt() {
         return cratedAt;
     }
 
 
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -114,7 +119,7 @@ public class User {
     public final boolean equals(Object o) {
         if (!(o instanceof User user)) return false;
 
-        return getId().equals(user.getId()) && getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) && getTaxNumber().equals(user.getTaxNumber()) && getFullname().equals(user.getFullname()) && getType() == user.getType() && getTransactionPin().equals(user.getTransactionPin()) && getCratedAt().equals(user.getCratedAt()) && Objects.equals(getUpdatedAt(), user.getUpdatedAt());
+        return getId().equals(user.getId()) && getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) && getTaxNumber().equals(user.getTaxNumber()) && getCratedAt().equals(user.getCratedAt()) && Objects.equals(getUpdatedAt(), user.getUpdatedAt());
     }
 
     @Override
@@ -125,7 +130,6 @@ public class User {
         result = 31 * result + getTaxNumber().hashCode();
         result = 31 * result + getFullname().hashCode();
         result = 31 * result + getType().hashCode();
-        result = 31 * result + getTransactionPin().hashCode();
         result = 31 * result + getCratedAt().hashCode();
         result = 31 * result + Objects.hashCode(getUpdatedAt());
         return result;

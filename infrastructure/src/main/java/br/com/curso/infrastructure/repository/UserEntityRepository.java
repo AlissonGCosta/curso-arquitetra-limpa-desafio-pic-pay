@@ -1,6 +1,6 @@
-package br.com.curso.repository;
+package br.com.curso.infrastructure.entity.repository;
 
-import br.com.curso.entity.UserEntity;
+import br.com.curso.infrastructure.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
