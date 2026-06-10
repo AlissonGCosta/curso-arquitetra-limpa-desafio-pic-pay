@@ -4,8 +4,6 @@ import br.com.curso.core.domain.UserTypeEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
-import org.springframework.data.annotation.Id;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -41,10 +39,10 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private UserTypeEnum type;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updateAt", nullable = false)
+    @Column(name = "update_at", nullable = false)
     private LocalDateTime updateAt;
 
 

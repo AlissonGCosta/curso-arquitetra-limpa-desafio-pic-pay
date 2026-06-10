@@ -11,7 +11,7 @@ public class User {
     private String email;
     private String password;
     private TaxNumber taxNumber;
-    private String fullname;
+    private String fullName;
     private UserTypeEnum type;
     private LocalDateTime cratedAt;
     private LocalDateTime updatedAt;
@@ -22,7 +22,7 @@ public class User {
                 TaxNumber taxNumber,
                 String password,
                 UUID id,
-                String fullname,
+                String fullName,
                 String email) {
         this.cratedAt = cratedAt;
         this.updatedAt = updatedAt;
@@ -31,20 +31,21 @@ public class User {
         this.taxNumber = taxNumber;
         this.password = password;
         this.id = id;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.email = email;
     }
 
     public User(String email,
                 String password,
                 TaxNumber taxNumber,
-                String fullname,
+                String fullName,
                 UserTypeEnum type) {
         this.email = email;
         this.password = password;
         this.taxNumber = taxNumber;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.type = type;
+        this.cratedAt = LocalDateTime.now();
 
     }
 
@@ -75,12 +76,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public TaxNumber getTaxNumber() {
@@ -128,7 +129,7 @@ public class User {
         result = 31 * result + getEmail().hashCode();
         result = 31 * result + getPassword().hashCode();
         result = 31 * result + getTaxNumber().hashCode();
-        result = 31 * result + getFullname().hashCode();
+        result = 31 * result + getFullName().hashCode();
         result = 31 * result + getType().hashCode();
         result = 31 * result + getCratedAt().hashCode();
         result = 31 * result + Objects.hashCode(getUpdatedAt());

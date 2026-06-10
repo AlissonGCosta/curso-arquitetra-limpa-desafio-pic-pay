@@ -21,7 +21,7 @@ public class TransactionPinValidateUseCaseImpl  implements TransactionPinValidat
 
     @Override
     public Boolean validate(TransactionPin transactionPin) {
-        if(transactionPin.isBlocked()){
+        if(transactionPin.getBlocked()){
                 throw new PinException(ErrorCodeEnum.PIN0001.getMessage(), ErrorCodeEnum.PIN0001.getCode());
         }
 

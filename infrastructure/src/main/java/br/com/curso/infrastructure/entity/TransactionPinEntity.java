@@ -29,10 +29,10 @@ public class TransactionPinEntity {
     @Column(name = "attempt", nullable = false)
     private Integer attempt;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updateAt", nullable = false)
+    @Column(name = "update_at", nullable = false)
     private LocalDateTime updateAt;
 
     @Column(name = "blocked", nullable = false )

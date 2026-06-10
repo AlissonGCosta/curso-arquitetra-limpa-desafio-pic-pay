@@ -35,13 +35,13 @@ public class TransactionEntity {
     private BigDecimal value;
 
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TransactionStatusEnum status;
 
-    @Column(name = "createdAt", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updateAt", nullable = false)
+    @Column(name = "update_at", nullable = false)
     private LocalDateTime updateAt;
 
 

@@ -35,7 +35,7 @@ public class CreateUserGatewayImpl implements CreateUserGateway {
             logger.info("Processo finalizado com sucesso::CreateUserGatewayImpl");
             return true;
         }catch(Exception e){
-            logger.error("Erro ao criar user::CreateUserGatewayImpl");
+            logger.error("Erro ao criar user::CreateUserGatewayImpl", e);
             return false;
         }
 

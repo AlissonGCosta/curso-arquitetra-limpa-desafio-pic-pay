@@ -34,10 +34,10 @@ public class WalletsEntity {
     @JoinColumn(name = "TransactionPinId")
     private TransactionPinEntity TransactionPinEntity;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updateAt")
+    @Column(name = "update_at")
     private LocalDateTime updateAt;
 
     public WalletsEntity(BigDecimal balance, UserEntity userEntity,
