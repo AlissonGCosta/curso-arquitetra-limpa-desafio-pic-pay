@@ -16,23 +16,25 @@ public class User {
     private LocalDateTime cratedAt;
     private LocalDateTime updatedAt;
 
-    public User(LocalDateTime cratedAt,
-                LocalDateTime updatedAt,
-                UserTypeEnum type,
-                TaxNumber taxNumber,
-                String password,
+    public User(
                 UUID id,
+                String email,
+                String password,
                 String fullName,
-                String email) {
+                TaxNumber taxNumber,
+                UserTypeEnum type,
+                LocalDateTime cratedAt,
+                LocalDateTime updatedAt
+
+                ) {
+        this.id = id;
+        this.email = email;
+        this.taxNumber = taxNumber;
+        this.fullName = fullName;
+        this.password = password;
+        this.type = type;
         this.cratedAt = cratedAt;
         this.updatedAt = updatedAt;
-        this.type = type;
-
-        this.taxNumber = taxNumber;
-        this.password = password;
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
     }
 
     public User(String email,

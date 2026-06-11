@@ -19,12 +19,14 @@ public class Wallet {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Wallet(TransactionPin  transactionPin,
-                  BigDecimal balance,
+    public Wallet(
                   Long id,
+                  TransactionPin  transactionPin,
+                  BigDecimal balance,
+                  User user,
                   LocalDateTime createdAt,
-                  LocalDateTime updatedAt,
-                  User user) {
+                  LocalDateTime updatedAt
+                  ) {
         this.balance = balance;
         this.id = id;
         this.transactionPin = transactionPin;

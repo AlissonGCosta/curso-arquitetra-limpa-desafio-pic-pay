@@ -12,6 +12,8 @@ import br.com.curso.infrastructure.repository.WalletsEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import static br.com.curso.infrastructure.Utils.Utilities.logger;
 
 @Service
@@ -26,6 +28,7 @@ public class CreateUserGatewayImpl implements CreateUserGateway {
     private final WalletMapper walletMapper;
 
     @Override
+    @Transactional
     public Boolean create(User user, Wallet wallet) {
         try{
             logger.info("Iniciando processo de criaçãodo usuario::CreateUserGatewayImpl");
